@@ -1,13 +1,5 @@
 from django import forms
-from .models import Post,ERRORCASE
-
-class PostForm(forms.ModelForm):
-
-    class Meta:
-        model = Post
-        fields=('title','text',)
-
-
+from .models import ERRORCASE
 
 
 class ErrorForm(forms.ModelForm):
