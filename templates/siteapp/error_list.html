@@ -1,0 +1,27 @@
+{% load static %}
+<head>
+    <title></title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/siteapp.css' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hello, Multiple Select!</title>
+    <link rel="stylesheet" href="{% static 'css/multiple-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/siteapp.css' %}">
+</head>
+<h1><a href="{% url 'multiselect_form' %}" class="btn-transitionE">選択画面へ</a></h1>
+   {% for post in posts %} 
+       <div>
+           <p>報告日：{{ post.created_date}}，
+           <span>異常１：{{ post.error_01 }}，</span>
+           <span>異常２：{{ post.error_02 }}，</span>
+           <span>異常３：{{ post.error_03 }}，</span>
+           </p>
+       </div>
+   {% endfor %}
+</div>
+</div>
+</div>
+</body>

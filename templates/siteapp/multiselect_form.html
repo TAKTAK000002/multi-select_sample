@@ -1,0 +1,65 @@
+
+{% load static %}
+<head>
+<link rel="stylesheet" href="{% static 'css/siteapp.css' %}">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Hello, Multiple Select!</title>
+<link rel="stylesheet" href="{% static 'css/multiple-select.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/siteapp.css' %}">
+</head>
+  <body>
+
+
+    <!-- Multiple Select -->
+
+    <select id="error_case" multiple="multiple">
+      <option value="1">異常１</option>
+      <option value="2">異常２</option>
+      <option value="3">異常３</option>
+   </select>
+ 
+    <button id="getSelectsBtn" class="btn btn-secondary">保存</button>
+  
+    <p><a href="{% url 'error_list' %}" class="btn-transitionE">選択画面</a></p>
+    
+      
+
+
+
+  </body>
+  <script src="{% static 'js/vender/jquery.min.js' %}"></script>
+  <script src="{% static 'js/multiple-select.min.js' %}"></script>
+  <script>
+
+      var token='{{csrf_token}}'
+      var $select = $('select')
+      $(function () {
+        $('select').multipleSelect()
+
+          $('#getSelectsBtn').click(function (){
+           var str =$select.multipleSelect('getSelects');
+           var error_01="",error_02="",error_03="";
+           var result = str.indexOf('1');
+           if(result !== -1){
+            error_01="on"
+           }
+           var result = str.indexOf('2');
+           if(result !== -1){
+            error_02="on"
+           }
+           var result = str.indexOf('3');
+           if(result !== -1){
+            error_03="on"
+           }
+           $select.multipleSelect('uncheckAll');
+
+
+            $.ajax({
+              method: 'POST',
+              headers:{"X-CSRFToken":token},
+              data: {error_01,error_02,error_03}
+            })
+          })
+      })
+    </script>
